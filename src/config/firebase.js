@@ -22,6 +22,9 @@ class FirebaseApp {
             return null;
         }
 
+        const user = await response.user;
+
+        return {user, isLoggedIn: true}
         
     }
 
