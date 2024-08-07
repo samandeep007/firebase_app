@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 
 class FirebaseApp {
 
@@ -28,10 +28,10 @@ class FirebaseApp {
         }
     }
 
-    async loginWithGithub(){
+    async loginWithFacebook(){
         try {
             const response = await signInWithPopup(this.auth, this.provider);
-            const credential = GoogleAuthProvider.credentialFromResult(response)
+            const credential = FacebookAuthProvider.credentialFromResult(response)
             if (!credential || !credential.accessToken) {
                 return null;
             }
