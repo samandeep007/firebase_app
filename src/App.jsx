@@ -7,9 +7,6 @@ export default function App() {
   const[user, setUser] = useState({});
   const[isLoggedIn, setIsLoggedIn] = useState(false);
   
-  const login = () => {
-
-  }
 
   return (
     <AuthProvider value={{isLoggedIn, user}}>

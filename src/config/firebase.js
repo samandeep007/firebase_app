@@ -11,11 +11,11 @@ class FirebaseApp {
         this.app = initializeApp(firebaseConfig);
         this.database = getDatabase(this.app);
         this.provider = new GoogleAuthProvider();
+        this.auth = getAuth();
     }
 
     async signInWithGoogle() {
-        const auth = getAuth();
-        const response = await getRedirectResult(auth);
+        const response = await getRedirectResult(this.auth);
         const credential = GoogleAuthProvider.credentialFromResult(response);
 
         if (!credential.accessToken) {
