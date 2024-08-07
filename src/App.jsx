@@ -20,7 +20,6 @@ export default function App() {
       
       setUser(currentUser);
       setIsLoggedIn(true);
-
       navigate('/user')
 
     } catch (error) {
