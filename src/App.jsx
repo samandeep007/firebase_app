@@ -1,25 +1,30 @@
 import React, { useState } from 'react'
-import { AuthProvider, useAuth } from './context/auth.context'
+import { AuthProvider } from './context/auth.context'
 import firebaseApp from './config/firebase';
+import { redirect } from 'react-router-dom';
 
 export default function App() {
-  const {isLoggedIn} = useAuth();
 
   const[user, setUser] = useState({});
- 
-  if(!isLoggedIn){
-    return (
-      <>
-      <p>You are not logged in</p>
-      <button onClick={() => firebaseApp.signInWithGoogle()}>Sign in with google</button>
-      </>
-    )
+  const[isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = async() => {
+    const currentUser = await firebaseApp.signInWithGoogle();
+    if(!currentUser){
+      console.log("Sign-in failed")
+    }
+    else {
+      setUser(currentUser);
+      setIsLoggedIn(true)
+      redirect('/home')
+    }
   }
+ 
   return (
    
-    <>
-   <h1>You are logged in successfully</h1>
+    <AuthProvider value={{user, isLoggedIn, login}}>
   
-    </>
+  
+    </AuthProvider>
   )
 }
