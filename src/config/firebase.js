@@ -1,10 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
-import { getAuth } from "firebase/auth";
 import { getAuth, getRedirectResult, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
-
+import { redirect } from "react-router-dom";
 class FirebaseApp {
 
     constructor() {
@@ -18,14 +16,15 @@ class FirebaseApp {
         
         signInWithRedirect(this.auth, this.provider);
         const response = await getRedirectResult(this.auth);
-        const credential = GoogleAuthProvider.credentialFromResult(response);
+        const credential = await GoogleAuthProvider.credentialFromResult(response);
 
         if (!credential.accessToken) {
             return null;
         }
 
         const user = result.user;
-        return ({user, isLoggedIn: true})
+        redirect('/saman')
+        
 
     }
 
