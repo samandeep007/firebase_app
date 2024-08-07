@@ -16,7 +16,7 @@ export default function App() {
     else {
       setUser(currentUser);
       setIsLoggedIn(true)
-      redirect('/home')
+      redirect('/')
     }
   }
  
