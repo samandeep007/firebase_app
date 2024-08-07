@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import firebaseApp from "./config/firebase";
+import React, { useState } from 'react'
+import { AuthProvider } from './context/auth.context'
+import firebaseApp from './config/firebase';
 
 export default function App() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
 
-  const handleSubmit = () => {
-    firebaseApp.addPost({title: title, description: description});
-  };
+  const[user, setUser] = useState({});
+  const[isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const login = () => {
+
+  }
 
   return (
-    <>
-      <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" id="title" value={title}/>
-      <input onChange={(e) => setDescription(e.target.value)}  type="text" name="description" id="description" value={description} />
-      <button onClick={handleSubmit} type="submit">Submit</button>
-    </>
-  );
+    <AuthProvider value={{isLoggedIn, user}}>
+
+    </AuthProvider>
+  )
 }

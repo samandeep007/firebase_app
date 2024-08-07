@@ -13,34 +13,25 @@ class FirebaseApp {
         this.provider = new GoogleAuthProvider();
     }
 
-    signInWithGoogle(){
+    async signInWithGoogle() {
         const auth = getAuth();
-        getRedirectResult(auth)
-          .then((result) => {
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            if(credential.accessToken){
-                
-            };
-        
-          
-            const user = result.user;
-           
-          }).catch((error) => {
-          
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.customData.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
+        const response = await getRedirectResult(auth);
+        const credential = GoogleAuthProvider.credentialFromResult(response);
 
-          });
+        if (!credential.accessToken) {
+            return null;
+        }
+
+        const user = result.user;
+        return ({user, isLoggedIn: true})
 
     }
 
-    addPost(data){
+    addPost(data) {
         set(ref(this.database, "posts/" + Date.now().toString()), {
             title: data.title,
             description: data.description,
-          });
+        });
     }
 }
 
