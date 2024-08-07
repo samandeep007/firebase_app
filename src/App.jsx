@@ -18,17 +18,18 @@ export default function App() {
       }
 
       setUser(currentUser);
+      console.error("Login Failed");
       setIsLoggedIn(true);
       redirect("/");
 
     } catch (error) {
-        console.error("Login Failed", error);
+       
         return;
     }
   };
 
   return (
-    <AuthProvider value={{ user, isLoggedIn, login }}>
+    <AuthProvider value={{ user, isLoggedIn, setIsLoggedIn, login }}>
       <Home />
     </AuthProvider>
   );
