@@ -23,16 +23,19 @@ export default function App() {
         console.log("Sign-in failed");
         return;
       }
-
       setUser(currentUser);
       setIsLoggedIn(true);
       navigate("/");
+
     } catch (error) {
       console.error("Login failed", error);
       return;
     }
   };
 
+
+
+  
   return (
     <AuthProvider value={{ user, isLoggedIn, login }}>
       <Home />
