@@ -15,6 +15,7 @@ class FirebaseApp {
     }
 
     async signInWithGoogle() {
+        signInWithRedirect(this.auth, this.provider);
         const response = await getRedirectResult(this.auth);
         const credential = GoogleAuthProvider.credentialFromResult(response);
 
@@ -26,6 +27,7 @@ class FirebaseApp {
         return ({user, isLoggedIn: true})
 
     }
+
 
     addPost(data) {
         set(ref(this.database, "posts/" + Date.now().toString()), {
