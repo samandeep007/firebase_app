@@ -3,6 +3,8 @@ import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
 import { getAuth, getRedirectResult, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import { redirect } from "react-router-dom";
+import { useAuth } from "../context/auth.context.js";
+
 class FirebaseApp {
 
     constructor() {
@@ -22,10 +24,7 @@ class FirebaseApp {
             return null;
         }
 
-        const user = result.user;
-        redirect('/saman')
         
-
     }
 
 
