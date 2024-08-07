@@ -3,7 +3,7 @@ import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
 import { GoogleAuthProvider } from "firebase/auth/web-extension";
 import { getAuth } from "firebase/auth";
-import { getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, getRedirectResult, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 class FirebaseApp {
 
