@@ -15,6 +15,7 @@ class FirebaseApp {
     }
 
     async signInWithGoogle() {
+        
         signInWithRedirect(this.auth, this.provider);
         const response = await getRedirectResult(this.auth);
         const credential = GoogleAuthProvider.credentialFromResult(response);
