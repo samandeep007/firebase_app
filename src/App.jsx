@@ -9,13 +9,21 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const login = async () => {
+  const login = async (provider) => {
     try {
-      const currentUser = await firebaseApp.loginUser();
+      let currentUser;
+
+      switch (provider) {
+        case "google": currentUser = await firebaseApp.loginWithGoogle(); break; 
+        case "facebook": currentUser = await firebaseApp.loginWithFacebook(); break;
+        default: currentUser = null;   
+      }
+
       if (!currentUser) {
         console.log("Sign-in failed");
         return;
       }
+
       setUser(currentUser);
       setIsLoggedIn(true);
       navigate("/");
