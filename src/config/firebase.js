@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-import { GithubAuthProvider } from "firebase/auth/web-extension";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+
 
 class FirebaseApp {
 
