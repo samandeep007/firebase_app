@@ -10,7 +10,6 @@ export default function Home() {
       <>
         <p>You're not logged in</p>
         <button onClick={() => login("google")}>Sign in with Google</button>
-        <button onClick={() => login("facebook")}>Sign in with Facebook</button>
         <button onClick={() => login("github")}>Sign in with GitHub</button>
       </>
     );
