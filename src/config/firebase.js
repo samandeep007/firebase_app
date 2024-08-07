@@ -17,11 +17,12 @@ class FirebaseApp {
          signInWithRedirect(this.auth, this.provider);
 
          const response = await getRedirectResult(this.auth);
-         
+
          const credential = GoogleAuthProvider.credentialFromResult(response)
          if (!credential.accessToken) {
              return null;
          }
+         
          const user = response.user;
          return user;
 

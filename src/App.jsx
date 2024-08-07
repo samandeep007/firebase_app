@@ -18,8 +18,6 @@ export default function App() {
       }
 
       setUser(currentUser);
-      console.error("Login Failed");
-      setIsLoggedIn(true);
       redirect("/");
 
     } catch (error) {
