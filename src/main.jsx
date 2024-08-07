@@ -13,8 +13,8 @@ import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
-      <Route path="" element={<App />} />
+    <Route path="/" element={<App />}>
+      <Route path="" element={<Home/>} />
       <Route path="/user" element={<Dashboard />} />
     </Route>
   )

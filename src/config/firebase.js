@@ -9,12 +9,14 @@ class FirebaseApp {
         this.app = initializeApp(firebaseConfig);
         this.database = getDatabase(this.app);
         this.auth = getAuth();
-        this.provider = new GoogleAuthProvider();
+        this.googleProvider = new GoogleAuthProvider();
+        this.facebookProvider = new FacebookAuthProvider();
+
 
     }
     async loginWithGoogle() {
         try {
-            const response = await signInWithPopup(this.auth, this.provider);
+            const response = await signInWithPopup(this.auth, this.googleProvider);
             const credential = GoogleAuthProvider.credentialFromResult(response)
             if (!credential || !credential.accessToken) {
                 return null;
@@ -30,7 +32,7 @@ class FirebaseApp {
 
     async loginWithFacebook(){
         try {
-            const response = await signInWithPopup(this.auth, this.provider);
+            const response = await signInWithPopup(this.auth, this.facebookProvider);
             const credential = FacebookAuthProvider.credentialFromResult(response)
             if (!credential || !credential.accessToken) {
                 return null;
