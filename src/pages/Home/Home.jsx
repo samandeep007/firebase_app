@@ -1,8 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/auth.context";
 export default function Home() {
-  const { isLoggedIn, login } = useAuth();
-  console.log(isLoggedIn)
+  const { isLoggedIn, login, user } = useAuth();
 
   if (!isLoggedIn) {
     return (
@@ -15,7 +14,7 @@ export default function Home() {
 
   return (
     <>
-    <h1>Hey Buddy! Thanks for logging in</h1>
+    <h1>Hey {user.displayName}! Thanks for logging in</h1>
     </>     
 );
 }

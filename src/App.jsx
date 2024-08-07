@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AuthProvider } from "./context/auth.context";
 import firebaseApp from "./config/firebase";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 
 export default function App() {
@@ -11,20 +11,17 @@ export default function App() {
 
   const login = async () => {
     try {
-      const currentUser = await firebaseApp.signInWithGoogle();
-
+      const currentUser = await firebaseApp.loginUser();
       if (!currentUser) {
         console.log("Sign-in failed");
         return;
       }
-      
       setUser(currentUser);
       setIsLoggedIn(true);
-      navigate('/user')
-
+      navigate("/");
     } catch (error) {
-       
-        return;
+      console.error("Login failed", error);
+      return;
     }
   };
 
