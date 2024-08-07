@@ -5,6 +5,6 @@ export default function Dashboard() {
     const{user} = useAuth();
  
   return (
-    <div>Dashboard</div>
+    <div>{user?.displayName}</div>
   )
 }

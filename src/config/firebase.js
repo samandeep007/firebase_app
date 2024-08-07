@@ -12,7 +12,23 @@ class FirebaseApp {
         this.provider = new GoogleAuthProvider();
 
     }
-    async loginUser() {
+    async loginWithGoogle() {
+        try {
+            const response = await signInWithPopup(this.auth, this.provider);
+            const credential = GoogleAuthProvider.credentialFromResult(response)
+            if (!credential || !credential.accessToken) {
+                return null;
+            }
+            const user = response.user;
+            return user;
+
+        } catch (error) {
+            console.error("Login failed", error);
+            return null;
+        }
+    }
+
+    async loginWithGithub(){
         try {
             const response = await signInWithPopup(this.auth, this.provider);
             const credential = GoogleAuthProvider.credentialFromResult(response)

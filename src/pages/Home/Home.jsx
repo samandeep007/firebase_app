@@ -8,6 +8,7 @@ export default function Home() {
       <>
         <p>You're not logged in</p>
         <button onClick={() => login()}>Sign in with Google</button>
+        <button onClick={() => login()}>Sign in with Google</button>
       </>
     );
   }
