@@ -13,17 +13,23 @@ class FirebaseApp {
     }
 
     async signInWithGoogle() {
-        
-        signInWithRedirect(this.auth, this.provider);
-        const response = await getRedirectResult(this.auth);
-        const credential = await GoogleAuthProvider.credentialFromResult(response)
-        if (!credential.accessToken) {
-            return null;
-        }
-        const user = await response.user;
-        return user;   
-    }
+       try {
+         signInWithRedirect(this.auth, this.provider);
 
+         const response = await getRedirectResult(this.auth);
+         
+         const credential = GoogleAuthProvider.credentialFromResult(response)
+         if (!credential.accessToken) {
+             return null;
+         }
+         const user = response.user;
+         return user;
+
+       } catch (error) {
+            console.error("Sign-in failed", error);
+            return null;
+       }
+    }
 
     addPost(data) {
         set(ref(this.database, "posts/" + Date.now().toString()), {

@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../../context/auth.context";
 export default function Home() {
   const { isLoggedIn, login } = useAuth();
+  console.log(isLoggedIn)
 
   if (!isLoggedIn) {
     return (
