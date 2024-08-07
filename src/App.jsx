@@ -17,10 +17,9 @@ export default function App() {
         console.log("Sign-in failed");
         return;
       }
-
       setUser(currentUser);
       setIsLoggedIn(true);
-      navigate('/')
+      navigate('/Hello')
 
     } catch (error) {
        
@@ -29,7 +28,7 @@ export default function App() {
   };
 
   return (
-    <AuthProvider value={{ user, isLoggedIn, setIsLoggedIn, login }}>
+    <AuthProvider value={{ user, isLoggedIn, login }}>
       <Home />
     </AuthProvider>
   );
