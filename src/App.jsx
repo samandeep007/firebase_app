@@ -17,9 +17,11 @@ export default function App() {
         console.log("Sign-in failed");
         return;
       }
+      
       setUser(currentUser);
       setIsLoggedIn(true);
-      navigate('/Hello')
+
+      navigate('/user')
 
     } catch (error) {
        
