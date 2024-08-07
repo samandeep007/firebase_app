@@ -17,6 +17,7 @@ export default function App() {
       switch (provider) {
         case "google": {currentUser = await firebaseApp.loginWithGoogle(); break}; 
         case "facebook": {currentUser = await firebaseApp.loginWithFacebook(); break};
+        case "github": {currentUser = await firebaseApp.loginWithGithub(); break};
         default: {currentUser = null};   
       }
 

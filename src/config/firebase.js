@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth/web-extension";
 
 class FirebaseApp {
 
@@ -11,10 +12,11 @@ class FirebaseApp {
         this.auth = getAuth();
         this.googleProvider = new GoogleAuthProvider();
         this.facebookProvider = new FacebookAuthProvider();
-
+        this.githubProvider = new GithubAuthProvider();
 
     }
-    async loginWithGoogle() {
+
+       async loginWithGoogle() {
         try {
             const response = await signInWithPopup(this.auth, this.googleProvider);
             const credential = GoogleAuthProvider.credentialFromResult(response)
@@ -45,6 +47,24 @@ class FirebaseApp {
             return null;
         }
     }
+
+    async loginWithGithub(){
+        try {
+            const response = await signInWithPopup(this.auth, this.githubProvider);
+            const credential = GithubAuthProvider.credentialFromResult(response)
+            if (!credential || !credential.accessToken) {
+                return null;
+            }
+            const user = response.user;
+            return user;
+
+        } catch (error) {
+            console.error("Login failed", error);
+            return null;
+        }
+    }
+
+
     
     addPost(data) {
         set(ref(this.database, "posts/" + Date.now().toString()), {
