@@ -95,17 +95,6 @@ class FirebaseApp {
         }
     }
 
-
-
-
-
-    
-    addPost(data) {
-        set(ref(this.database, "posts/" + Date.now().toString()), {
-            title: data.title,
-            description: data.description,
-        });
-    }
 }
 
 const firebaseApp = new FirebaseApp();
