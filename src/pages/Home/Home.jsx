@@ -124,9 +124,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="h-full w-full">
+          <div className="h-full w-full flex justify-center items-center">
             <img
-              className="mx-auto h-full w-full rounded-md object-cover"
+              className="mx-auto h-3/4 w-3/4 rounded-md object-cover"
               src="https://images.unsplash.com/photo-1630673245362-f69d2b93880e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
               alt=""
             />
