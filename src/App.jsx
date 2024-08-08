@@ -3,6 +3,8 @@ import { AuthProvider } from "./context/auth.context";
 import firebaseApp from "./config/firebase";
 import { Outlet, redirect, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 
 export default function App() {
@@ -40,7 +42,9 @@ export default function App() {
 
   return (
     <AuthProvider value={{ user, isLoggedIn, login }}>
+      <Navbar/>
       <Outlet/>
+      <Footer/>
     </AuthProvider>
   );
 }
