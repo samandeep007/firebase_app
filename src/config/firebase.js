@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 
 class FirebaseApp {
@@ -64,12 +64,14 @@ class FirebaseApp {
         }
     }
 
-    async registerWithEmail(email, password){
+    async registerWithEmail(email, password, otherDetails){
         try {
             const userCredential = await createUserWithEmailAndPassword(this.auth, email, password)
             if (!userCredential) {
                 return null;
             }
+            console.log("hiho")
+            await updateProfile(userCredential.user, {...otherDetails})
             const user = userCredential.user;
             return user;
         } catch (error) {

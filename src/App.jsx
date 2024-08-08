@@ -12,9 +12,9 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const register = async(email, password) => {{
+  const register = async(email, password, otherDetails) => {{
     try {
-      const user = await firebaseApp.registerWithEmail(email, password)
+      const user = await firebaseApp.registerWithEmail(email, password, otherDetails)
       if(!user){
         console.error("Registration failed")
         return;
@@ -45,6 +45,7 @@ export default function App() {
         return;
       }
       setUser(currentUser);
+      console.log(currentUser)
       setIsLoggedIn(true);
       navigate("/");
 
