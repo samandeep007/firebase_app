@@ -138,8 +138,10 @@ export default function Home() {
 
   return (
     <>
-      <h1>Hey {user.displayName}! Thanks for logging in</h1>
-      <button onClick={() => navigate("/user")}>Go to dashboard</button>
+      <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-7xl p-4">
+      <h1 className="text-xl font-semibold mb-4 ">Hey {user.displayName}! Thanks for logging in</h1>
+      <button className="bg-black rounded-xl text-white p-3 hover:bg-gray-600" onClick={() => navigate("/user")}>Go to dashboard</button>
+      </div>
     </>
   );
 }
