@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 export default function Home() {
   const { isLoggedIn, login, user } = useAuth();
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("")
   const navigate = useNavigate();
 
   if (!isLoggedIn) {
@@ -40,6 +42,8 @@ export default function Home() {
                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="email"
                         placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       ></input>
                     </div>
                   </div>
@@ -65,6 +69,8 @@ export default function Home() {
                       <input
                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                       ></input>
                     </div>
@@ -72,9 +78,10 @@ export default function Home() {
                   <div>
                     <button
                       type="button"
+                      onClick={() => login("email", email, password)}
                       className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                     >
-                      Get started <ArrowRight className="ml-2" size={16} />
+                      Login <ArrowRight className="ml-2" size={16} />
                     </button>
                   </div>
                 </div>

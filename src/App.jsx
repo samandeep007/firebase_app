@@ -12,7 +12,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const login = async (provider) => {
+  const login = async (provider, email="", password="") => {
     try {
       let currentUser;
 
@@ -20,6 +20,7 @@ export default function App() {
         case "google": {currentUser = await firebaseApp.loginWithGoogle(); break}; 
         case "facebook": {currentUser = await firebaseApp.loginWithFacebook(); break};
         case "github": {currentUser = await firebaseApp.loginWithGithub(); break};
+        case "email": {currentUser = await firebaseApp.loginWithEmail(email, password); break};
         default: {currentUser = null};   
       }
 
