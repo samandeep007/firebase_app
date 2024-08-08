@@ -10,11 +10,13 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import SignUp from "./pages/SignUp/SignUp.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Home/>} />
+      <Route path='/signup' element={<SignUp/>}/>
       <Route path="/user" element={<Dashboard />} />
     </Route>
   )

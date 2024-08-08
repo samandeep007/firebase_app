@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/auth.context";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-export default function Home() {
-  const { isLoggedIn, login, user } = useAuth();
+import { useAuth } from "../../context/auth.context";
+export default function SignUp() {
+
+    const {register} = useAuth();
+  
   const[email, setEmail] = useState("");
   const[password, setPassword] = useState("")
-  const navigate = useNavigate();
 
-  if (!isLoggedIn) {
+
     return (
       <>
         <div className="grid grid-cols-1 lg:grid-cols-2 px-4">
@@ -19,13 +20,13 @@ export default function Home() {
               </h2>
               <p className="mt-2 text-sm text-gray-600">
                 Don&apos;t have an account?{" "}
-                <Link
-                  to="/signup"
+                <a
+                  href="#"
                   title=""
                   className="font-semibold text-black transition-all duration-200 hover:underline"
                 >
                   Create a free account
-                </Link>
+                </a>
               </p>
               <form action="#" method="POST" className="mt-8">
                 <div className="space-y-5">
@@ -78,7 +79,7 @@ export default function Home() {
                   <div>
                     <button
                       type="button"
-                      onClick={() => login("email", email, password)}
+                      onClick={async() => await register(email, password)}
                       className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                     >
                       Login <ArrowRight className="ml-2" size={16} />
@@ -136,12 +137,4 @@ export default function Home() {
     );
   }
 
-  return (
-    <>
-      <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-7xl p-4">
-      <h1 className="text-xl font-semibold mb-4 ">Hey {user.displayName}! Thanks for logging in</h1>
-      <button className="bg-black rounded-xl text-white p-3 hover:bg-gray-600" onClick={() => navigate("/user")}>Go to dashboard</button>
-      </div>
-    </>
-  );
-}
+

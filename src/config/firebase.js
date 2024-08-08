@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../env.js'
 import { getDatabase, ref, set } from "firebase/database";
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, GithubAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 class FirebaseApp {
@@ -60,6 +60,20 @@ class FirebaseApp {
 
         } catch (error) {
             console.error("Login failed", error);
+            return null;
+        }
+    }
+
+    async registerWithEmail(email, password){
+        try {
+            const userCredential = await createUserWithEmailAndPassword(this.auth, email, password)
+            if (!userCredential) {
+                return null;
+            }
+            const user = userCredential.user;
+            return user;
+        } catch (error) {
+            console.error("Registration failed", error);
             return null;
         }
     }
