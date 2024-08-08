@@ -43,7 +43,7 @@ export default function Navbar() {
               />
             </svg>
           </span>
-          <span className="font-bold">GigSmithy</span>
+          <span className="font-bold">GigSmith</span>
         </div>
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
