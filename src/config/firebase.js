@@ -16,7 +16,7 @@ class FirebaseApp {
 
     }
 
-       async loginWithGoogle() {
+    async loginWithGoogle() {
         try {
             const response = await signInWithPopup(this.auth, this.googleProvider);
             const credential = GoogleAuthProvider.credentialFromResult(response)
@@ -32,7 +32,7 @@ class FirebaseApp {
         }
     }
 
-    async loginWithFacebook(){
+    async loginWithFacebook() {
         try {
             const response = await signInWithPopup(this.auth, this.facebookProvider);
             const credential = FacebookAuthProvider.credentialFromResult(response)
@@ -48,7 +48,7 @@ class FirebaseApp {
         }
     }
 
-    async loginWithGithub(){
+    async loginWithGithub() {
         try {
             const response = await signInWithPopup(this.auth, this.githubProvider);
             const credential = GithubAuthProvider.credentialFromResult(response)
@@ -64,14 +64,14 @@ class FirebaseApp {
         }
     }
 
-    async registerWithEmail(email, password, otherDetails){
+    async registerWithEmail(email, password, otherDetails) {
         try {
             const userCredential = await createUserWithEmailAndPassword(this.auth, email, password)
             if (!userCredential) {
                 return null;
             }
             console.log("hiho")
-            await updateProfile(userCredential.user, {...otherDetails})
+            await updateProfile(userCredential.user, { ...otherDetails })
             const user = userCredential.user;
             return user;
         } catch (error) {
@@ -80,7 +80,7 @@ class FirebaseApp {
         }
     }
 
-    async loginWithEmail(email, password){
+    async loginWithEmail(email, password) {
         try {
             const credential = await signInWithEmailAndPassword(this.auth, email, password);
             if (!credential) {

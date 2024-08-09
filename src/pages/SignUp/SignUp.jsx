@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { useAuth } from "../../context/auth.context";
 export default function SignUp() {
 
-    const {register} = useAuth();
+    const {register, login} = useAuth();
   
   const[email, setEmail] = useState("");
   const[password, setPassword] = useState("");
